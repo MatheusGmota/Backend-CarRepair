@@ -92,12 +92,13 @@ public class OrcamentoDAO implements RepositorioOrcamentos {
         }
     }
 
-    public Orcamento obterPorId(Long idOrcamento) {
+    public Orcamento obter(Long idCliente, Long idVeiculo) {
         Orcamento orcamento = null;
-        String sqlSelect = "SELECT * FROM tb_orcamento WHERE id_orcamento = ?";
+        String sqlSelect = "SELECT * FROM tb_orcamento WHERE id_cliente = ? AND id_veiculo = ?";
         try {
             PreparedStatement cmdSelect = conn.prepareStatement(sqlSelect);
-            cmdSelect.setLong(1, idOrcamento);
+            cmdSelect.setLong(1, idCliente);
+            cmdSelect.setLong(2, idVeiculo);
             ResultSet rs = cmdSelect.executeQuery();
             while (rs.next()) {
                 orcamento = new Orcamento(

@@ -6,12 +6,10 @@ import br.com.carrepair.dominio.RepositorioPecas;
 import br.com.carrepair.infra.dao.OrcamentoDAO;
 import br.com.carrepair.infra.dao.PecaDAO;
 import br.com.carrepair.service.OrcamentoService;
-import br.com.carrepair.service.PecaService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 
 @Path("orcamento")
 public class OrcamentoController {
@@ -26,13 +24,13 @@ public class OrcamentoController {
         orcamentoService = new OrcamentoService(orcamentoDAO, pecasDAO);
     }
 
-    @Path("/{idOrcamento}")
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obterOrcamentoPorId(@PathParam("idOrcamento") Long idOrcamento) {
+    public Response obter(@QueryParam("idCliente") Long idCliente, @QueryParam("idVeiculo") Long idVeiculo) {
         Response.Status status;
         try {
-            Orcamento orcamento = orcamentoService.obterPorId(idOrcamento);
+            Orcamento orcamento = orcamentoService.obter(idCliente, idVeiculo);
             if (orcamento == null) status = Response.Status.NOT_FOUND;
             else status = Response.Status.OK;
             return Response
@@ -68,7 +66,7 @@ public class OrcamentoController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response atualizarPeca(Orcamento orcamento) {
+    public Response atualizar(Orcamento orcamento) {
 
         Response.Status status;
         try {
@@ -89,11 +87,11 @@ public class OrcamentoController {
 
     @DELETE
     @Path("/{idOrcamento}")
-    public Response deletarPeca(@PathParam("idOrcamento") Long idOrcamento) {
+    public Response deletar(@PathParam("idOrcamento") Long idOrcamento) {
         try {
             orcamentoService.deletar(idOrcamento);
             return Response
-                    .status(Response.Status.OK)
+                    .status(Response.Status.NO_CONTENT)
                     .build();
         } catch (RuntimeException e) {
             e.printStackTrace();

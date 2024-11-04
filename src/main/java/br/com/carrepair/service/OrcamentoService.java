@@ -43,8 +43,8 @@ public class OrcamentoService {
         repositorioOrcamentos.fechar();
     }
 
-    public Orcamento obterPorId(Long idOrcamento) {
-        Orcamento orcamento = repositorioOrcamentos.obterPorId(idOrcamento);
+    public Orcamento obter(Long idCliente, Long idVeiculo) {
+        Orcamento orcamento = repositorioOrcamentos.obter(idCliente, idVeiculo);
         repositorioOrcamentos.fechar();
         return orcamento;
     }

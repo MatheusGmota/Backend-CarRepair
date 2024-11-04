@@ -25,6 +25,7 @@ public class VeiculosDAO implements RepositorioVeiculos {
             cmdInsert.setInt(5, veiculos.getQuilometragem());
             cmdInsert.execute();
             cmdInsert.close();
+            veiculos.setIdVeiculo(obterIdVeiculo(idCliente));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

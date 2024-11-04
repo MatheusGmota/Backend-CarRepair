@@ -1,7 +1,7 @@
 package br.com.carrepair.dominio;
 
 public interface RepositorioOrcamentos {
-    Orcamento obterPorId(Long idOrcamento);
+    Orcamento obter(Long idCliente,Long idVeiculo);
     void adicionar(Orcamento orcamento);
     void atualizar(Orcamento orcamento);
     void deletar(Long idOrcamento);

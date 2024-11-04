@@ -13,9 +13,6 @@ public class Cliente {
     @JsonProperty
     private Login login;
 
-//    @JsonPropert
-//    private Veiculos veiculos;
-
     public Cliente() {}
 
     public Cliente(Long id, String nome, String tipoDocumento, long numeroDocumento, String email, long telefone) {

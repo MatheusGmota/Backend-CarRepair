@@ -98,7 +98,7 @@ public class ClienteController  {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response atualizarPeca(Cliente cliente) {
+    public Response atualizar(Cliente cliente) {
 
         Response.Status status;
         try {
@@ -117,11 +117,11 @@ public class ClienteController  {
 
     @DELETE
     @Path("/{idCliente}")
-    public Response deletarPeca(@PathParam("idCliente") Long id) {
+    public Response deletar(@PathParam("idCliente") Long id) {
         try {
             clienteService.deletar(id);
             return Response
-                    .status(Response.Status.OK)
+                    .status(Response.Status.NO_CONTENT)
                     .build();
         } catch (RuntimeException e) {
             e.printStackTrace();

@@ -1,9 +1,6 @@
 package br.com.carrepair.controller;
 
-import br.com.carrepair.dominio.Cliente;
-import br.com.carrepair.dominio.Login;
-import br.com.carrepair.dominio.MensagemErro;
-import br.com.carrepair.dominio.RepositorioAuth;
+import br.com.carrepair.dominio.*;
 import br.com.carrepair.infra.dao.AuthDAO;
 import br.com.carrepair.service.AuthService;
 
@@ -31,12 +28,12 @@ public class AuthController {
     public Response autenticar(Login login) {
         try {
             Response.Status status;
-            Cliente cliente = authService.autenticar(login);
-            if (cliente == null) status = Response.Status.UNAUTHORIZED;
+            ClienteDTO clienteDTO  = authService.autenticar(login);
+            if (clienteDTO == null) status = Response.Status.UNAUTHORIZED;
             else status = Response.Status.OK;
             return Response
                     .status(status)
-                    .entity(cliente)
+                    .entity(clienteDTO)
                     .build();
         } catch (RuntimeException e) {
             mensagemErro.setMensagem("Erro ao realizar requisição: "+e.getMessage());

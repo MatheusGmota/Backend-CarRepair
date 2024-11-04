@@ -1,0 +1,422 @@
+{
+	"info": {
+		"_postman_id": "ae25caaf-5f46-4455-82c5-6a230a556245",
+		"name": "CarRepair",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38405800"
+	},
+	"item": [
+		{
+			"name": "Peca",
+			"item": [
+				{
+					"name": "Obter todas pecas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrepair/pecas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"pecas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar peca",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nome\": \"Amortecedor\",\r\n        \"codigo\": \"C567\",\r\n        \"valorUnitario\": 120.7\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/pecas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"pecas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar peca",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"nome\": \"Diferencial AX\",\r\n    \"codigo\": \"K293\",\r\n    \"valorUnitario\": 50.3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/pecas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"pecas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Peca",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrepair/pecas/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"pecas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Inserir cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Matheus\",\r\n    \"tipoDocumento\": \"cpf\",\r\n    \"numeroDocumento\": 12345678912,\r\n    \"email\": \"matheus@email.com\",\r\n    \"telefone\": 1199999999,\r\n    \"login\" : {\r\n        \"usuario\": \"matheus@email.com\",\r\n        \"senha\": \"senha123\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter cliente por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrepair/clientes/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"clientes",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter cliente por cpf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrepair/clientes?cpf=12345678912",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "12345678912"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autenticação",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"matheus123@email.com\",\r\n    \"senha\": \"senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 9,\r\n    \"nome\": \"Matheus Mota\",\r\n    \"tipoDocumento\": \"cpf\",\r\n    \"numeroDocumento\": 12345678912,\r\n    \"email\": \"matheus@email.com\",\r\n    \"telefone\": 1199999999,\r\n    \"login\": {\r\n        \"usuario\": \"matheus123@email.com\",\r\n        \"senha\": \"senha123\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Veiculo",
+			"item": [
+				{
+					"name": "Adicionar veiculo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"marca\":\"GM Chevrolet\",\r\n    \"modelo\":\"prisma\",\r\n    \"ano\":2012,\r\n    \"quilometragem\":64200,\r\n    \"diagnostico\": {\r\n        \"descricaoProblema\": \"Vazando óleo do motor\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/veiculos/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"veiculos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar veiculo Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"marca\":\"GM Chevrolet\",\r\n    \"modelo\":\"prisma\",\r\n    \"ano\":2012,\r\n    \"quilometragem\":64200,\r\n    \"diagnostico\": {\r\n        \"descricaoProblema\": \"Vazando óleo do motor\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/veiculos/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"veiculos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar veiculo Copy 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"marca\":\"GM Chevrolet\",\r\n    \"modelo\":\"prisma\",\r\n    \"ano\":2012,\r\n    \"quilometragem\":64200,\r\n    \"diagnostico\": {\r\n        \"descricaoProblema\": \"Vazando óleo do motor\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/veiculos/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"veiculos",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orcamento",
+			"item": [
+				{
+					"name": "Salvar Orcamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idCliente\": 21,\r\n  \"idVeiculo\": 11,\r\n  \"precoHoraMecanico\": 32.4,\r\n  \"itensOrcamento\": [\r\n    {\r\n      \"idPeca\": 29,\r\n      \"quantidade\": 2\r\n    },\r\n    {\r\n      \"idPeca\": 30,\r\n      \"quantidade\": 1\r\n    },\r\n    {\r\n      \"idPeca\": 28,\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/carrepair/orcamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"orcamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Orcamento",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Obter por id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Orcamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrepair/orcamento/46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrepair",
+								"orcamento",
+								"46"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

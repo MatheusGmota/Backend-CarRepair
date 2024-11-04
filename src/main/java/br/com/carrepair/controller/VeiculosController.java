@@ -3,6 +3,7 @@ package br.com.carrepair.controller;
 import br.com.carrepair.dominio.*;
 import br.com.carrepair.infra.dao.DiagnosticoDAO;
 import br.com.carrepair.infra.dao.VeiculosDAO;
+import br.com.carrepair.infra.geraOrcamento.GeraOrcamentoImpl;
 import br.com.carrepair.service.VeiculosService;
 
 import javax.ws.rs.*;
@@ -14,13 +15,15 @@ public class VeiculosController {
 
     private RepositorioVeiculos veiculosDAO;
     private RepositorioDiagnostico diagnosticoDAO;
+    private GeraOrcamento geraOrcamento;
     private VeiculosService veiculosService;
     private MensagemErro mensagemErro;
 
     public VeiculosController() {
         veiculosDAO = new VeiculosDAO();
         diagnosticoDAO = new DiagnosticoDAO();
-        veiculosService = new VeiculosService(veiculosDAO, diagnosticoDAO);
+        geraOrcamento = new GeraOrcamentoImpl();
+        veiculosService = new VeiculosService(geraOrcamento, veiculosDAO, diagnosticoDAO);
         mensagemErro = new MensagemErro();
     }
 
@@ -53,9 +56,10 @@ public class VeiculosController {
             @PathParam("idCliente") Long idCliente,
             Veiculos veiculos) {
         try {
-            veiculosService.adicionar(veiculos, idCliente);
+            OrcamentoDTO orcamentoDTO = veiculosService.adicionar(veiculos, idCliente);
             return Response
                     .status(Response.Status.CREATED)
+                    .entity(orcamentoDTO)
                     .build();
         } catch (RuntimeException e) {
             Response.Status status;

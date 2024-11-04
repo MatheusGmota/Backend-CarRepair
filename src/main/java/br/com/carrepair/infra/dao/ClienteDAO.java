@@ -59,7 +59,7 @@ public class ClienteDAO implements RepositorioClientes {
     public Cliente obterClientePorId(Long id) {
         Cliente cliente = null;
         try {
-            String sqlSelect = "SELECT * FROM tb_cliente c INNER JOIN tb_contato ct ON c.id_cliente = ct.id_cliente WHERE c.id_cliente = ?";
+            String sqlSelect = "SELECT * FROM tb_cliente c INNER JOIN tb_contato ct ON c.id_cliente = ct.id_cliente INNER JOIN tb_login l ON c.id_cliente = l.id_cliente WHERE c.id_cliente = ?";
             PreparedStatement cmdSelect = conn.prepareStatement(sqlSelect);
             cmdSelect.setLong(1, id);
             ResultSet rs = cmdSelect.executeQuery();
@@ -69,6 +69,9 @@ public class ClienteDAO implements RepositorioClientes {
                         rs.getLong("numero_documento"),
                         rs.getString("email"),
                         rs.getLong("telefone"));
+
+                Login login = new Login(rs.getString("login"), rs.getString("senha"));
+                cliente.setLogin(login);
             }
             cmdSelect.close();
         } catch (SQLException e) {
@@ -80,7 +83,7 @@ public class ClienteDAO implements RepositorioClientes {
     public Cliente obterClientePorNumeroDocumento(long numeroDocumento) {
         Cliente cliente = null;
         try {
-            String sqlSelect = "SELECT * FROM tb_cliente c INNER JOIN tb_contato ct ON c.id_cliente = ct.id_cliente WHERE c.numero_documento = ?";
+            String sqlSelect = "SELECT * FROM tb_cliente c INNER JOIN tb_contato ct ON c.id_cliente = ct.id_cliente INNER JOIN tb_login l ON c.id_cliente = l.id_cliente WHERE c.numero_documento = ?";
             PreparedStatement cmdSelect = conn.prepareStatement(sqlSelect);
             cmdSelect.setLong(1, numeroDocumento);
             ResultSet rs = cmdSelect.executeQuery();
@@ -90,6 +93,9 @@ public class ClienteDAO implements RepositorioClientes {
                         rs.getLong("numero_documento"),
                         rs.getString("email"),
                         rs.getLong("telefone"));
+                
+                Login login = new Login(rs.getString("login"), rs.getString("senha"));
+                cliente.setLogin(login);
             }
             cmdSelect.close();
         } catch (SQLException e) {

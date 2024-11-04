@@ -76,7 +76,7 @@ public class PecaController {
         try {
             pecaService.deletar(id);
             return Response
-                    .status(Response.Status.OK)
+                    .status(Response.Status.NO_CONTENT)
                     .build();
         } catch (RuntimeException e) {
             e.printStackTrace();

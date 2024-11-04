@@ -3,10 +3,12 @@ package br.com.carrepair.service;
 import br.com.carrepair.dominio.*;
 
 public class VeiculosService {
+    private GeraOrcamento geraOrcamento;
     private RepositorioVeiculos repositorioVeiculos;
     private RepositorioDiagnostico repositorioDiagnostico;
 
-    public VeiculosService(RepositorioVeiculos repositorioVeiculos, RepositorioDiagnostico repositorioDiagnostico) {
+    public VeiculosService(GeraOrcamento geraOrcamento,RepositorioVeiculos repositorioVeiculos, RepositorioDiagnostico repositorioDiagnostico) {
+        this.geraOrcamento = geraOrcamento;
         this.repositorioVeiculos = repositorioVeiculos;
         this.repositorioDiagnostico = repositorioDiagnostico;
     }
@@ -16,12 +18,14 @@ public class VeiculosService {
         repositorioVeiculos.fechar();
         return veiculo;
     }
-    public void adicionar(Veiculos veiculos, Long idCliente) {
+
+    public OrcamentoDTO adicionar(Veiculos veiculos, Long idCliente) {
+        OrcamentoDTO orcamentoDTO = geraOrcamento.obterOrcamento(veiculos);
         repositorioVeiculos.adicionar(veiculos, idCliente);
-        Long idVeiculo = repositorioVeiculos.obterIdVeiculo(idCliente);
-        repositorioDiagnostico.adicionar(veiculos.getDiagnostico(), idVeiculo);
-        repositorioDiagnostico.fechar();
+        repositorioDiagnostico.adicionar(veiculos.getDiagnostico(), veiculos.getIdVeiculo());
         repositorioVeiculos.fechar();
+        repositorioDiagnostico.fechar();
+        return orcamentoDTO;
     }
 
     public void atualizar(Veiculos veiculos) {

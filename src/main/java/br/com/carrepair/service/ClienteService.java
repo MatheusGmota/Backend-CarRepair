@@ -28,7 +28,6 @@ public class ClienteService {
         repositorioClientes.fechar();
     }
 
-
     public void atualizar(Cliente cliente) {
         repositorioClientes.atualizar(cliente);
         repositorioClientes.atualizarContato(cliente);
